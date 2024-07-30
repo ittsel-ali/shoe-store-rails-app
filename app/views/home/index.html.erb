@@ -1,0 +1,36 @@
+<h1>Real-time Inventories</h1>
+<div id="chart">
+  
+</div>
+
+
+<script>
+  
+    var options = {
+      chart: {
+        type: 'bar',
+        height: 600,
+        stacked: false,
+        background: '#f5deb3'
+      },
+      plotOptions: {
+        bar: {
+          horizontal: false,
+          dataLabels: {
+            position: 'top'
+          }
+        }
+      },
+      series: [],
+      xaxis: {
+        categories: [] // Stores will be listed here
+      },
+      title: {
+        text: 'Inventory by Store and Shoe Model',
+        align: 'center'
+      }
+    };
+
+    var chart = new ApexCharts(document.querySelector("#chart"), options);
+    chart.render();
+  </script>
