@@ -35,7 +35,7 @@ These instructions will get you a copy of the project up and running on your loc
 
    ```bash
    rails db:create
-   rails db:migratep
+   rails db:migrate
 
 4. **Run Inventory Service on port (8080) by following the instructions here: https://github.com/mathieugagne/shoe-store**
 
