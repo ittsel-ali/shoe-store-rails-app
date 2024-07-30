@@ -23,8 +23,8 @@ These instructions will get you a copy of the project up and running on your loc
 1. **Clone the repository**
 
    ```bash
-   git clone git@github.com:username/inventory_app.git
-   cd inventory_app
+   git clone https://github.com/ittsel-ali/shoe-store-rails-app.git
+   cd shoe-store-rails-app
 
 2. **Install Gems**
 
