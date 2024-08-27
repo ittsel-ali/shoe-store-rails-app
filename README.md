@@ -45,8 +45,30 @@ By default, Docker Desktop sets up kubectl to use the local Kubernetes cluster. 
    ```bash
    brew install helm
 
-4. **Deploy Application to K8**
+4. **Setup Kafka (MAC)**
+   ```bash
+   brew install zookeeper
+   brew install kafka
+    
+   brew services start zookeeper
+   brew services start kafka
+   
+5. **Setup Ngrok (MAC)**
 
+   Run in seperate terminal! This is required to allow k8 to listen to the feed send by the shoe-store inventory.rb, otherwise k8 will cause conflicts with localhost
+   ```bash
+   brew install ngrok
+
+   ngrok tcp 9092
+
+7. **Update websocket listener K8 values**
+
+   Replace `WEBSOCKET_URL` value with the ip provided by Ngrok. You can update using cmd below: 
+   ```bash
+   nano websocket-listener-deployment.yml
+   
+8. **Deploy Application to K8**
+   Run cmds below from rails app folder!
    ```bash
    helm repo add bitnami https://charts.bitnami.com/bitnami
    helm repo update
