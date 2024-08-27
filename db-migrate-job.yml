@@ -1,0 +1,24 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: db-migrate
+spec:
+  template:
+    spec:
+      containers:
+      - name: migrate
+        image: ittselali/my-rails-app:latest
+        env:
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: my-postgres-ha-postgresql-ha-postgresql
+              key: password
+        - name: DATABASE_PRIMARY_URL
+          value: "postgresql://postgres:$(POSTGRES_PASSWORD)@my-postgres-ha-postgresql-ha-postgresql-0.my-postgres-ha-postgresql-ha-postgresql-headless.default.svc.cluster.local:5432/postgres"
+        - name: DATABASE_REPLICA_URL
+          value: "postgresql://postgres:$(POSTGRES_PASSWORD)@my-postgres-ha-postgresql-ha-pgpool.default.svc.cluster.local:5432/postgres"
+        - name: RAILS_ENV
+          value: "development"
+        command: ["/bin/sh", "-c", "bundle exec rake db:create db:migrate"]
+      restartPolicy: OnFailure

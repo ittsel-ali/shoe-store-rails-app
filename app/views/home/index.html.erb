@@ -1,36 +1,74 @@
-<h1>Real-time Inventories</h1>
-<div id="chart">
-  
-</div>
-
-
-<script>
-  
-    var options = {
-      chart: {
-        type: 'bar',
-        height: 600,
-        stacked: false,
-        background: '#f5deb3'
-      },
-      plotOptions: {
-        bar: {
-          horizontal: false,
-          dataLabels: {
-            position: 'top'
-          }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Inventory Updates</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: space-between;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
         }
-      },
-      series: [],
-      xaxis: {
-        categories: [] // Stores will be listed here
-      },
-      title: {
-        text: 'Inventory by Store and Shoe Model',
-        align: 'center'
-      }
-    };
+        #inventorySection {
+            width: 70%;
+            padding: 20px;
+        }
+        #alertsSection {
+            width: 30%;
+            padding: 20px;
+            border-left: 1px solid #ddd;
+        }
+        #zeroInventoryAlerts {
+            list-style-type: none;
+            padding: 0;
+        }
+        #zeroInventoryAlerts li {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #f5c6cb;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="inventorySection">
+        <h1>Real-time Inventories</h1>
+        <table id="inventoryTable">
+            <thead>
+                <tr>
+                    <th>Store</th>
+                    <th>Model</th>
+                    <th>Inventory</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @inventory.each do |item| %>
+                    <tr id="<%= "row-#{item.store.gsub(/\s+/, '')}-#{item.model.gsub(/\s+/, '')}" %>">
+                        <td><%= item.store %></td>
+                        <td><%= item.model %></td>
+                        <td><%= item.inventory %></td>
+                    </tr>
+                <% end %>
+                <!-- Rows will be dynamically inserted here -->
+            </tbody>
+        </table>
+    </div>
 
-    var chart = new ApexCharts(document.querySelector("#chart"), options);
-    chart.render();
-  </script>
+    <div id="alertsSection">
+        <h2>Zero Inventory Alerts</h2>
+        <ul id="zeroInventoryAlerts">
+            <!-- Alerts will be dynamically inserted here -->
+        </ul>
+    </div>
+
+    <script>
+        const tableBody = document.getElementById('inventoryTable').getElementsByTagName('tbody')[0];
+        const alertsList = document.getElementById('zeroInventoryAlerts');
+    </script>
+</body>
+</html>

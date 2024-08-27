@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: websocket-listener
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: websocket-listener
+  template:
+    metadata:
+      labels:
+        app: websocket-listener
+    spec:
+      containers:
+      - name: websocket-listener
+        image: ittselali/my-rails-app:latest
+        env:
+        - name: RAILS_ENV
+          value: "development"
+        - name: WEBSOCKET_URL
+          value: "2.tcp.ngrok.io:12294" # Replace with your actual WebSocket URL
+        - name: REDIS_URL
+          value: "redis://redis-service:6379/1"
+        command: ["bundle", "exec", "rails", "runner"]
+        args: ["./lib/start_websocket_listener.rb"]
+        ports:
+        - containerPort: 8080
+      restartPolicy: Always

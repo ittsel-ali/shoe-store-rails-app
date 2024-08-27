@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rails-app
+  labels:
+    app: rails-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rails-app
+  template:
+    metadata:
+      labels:
+        app: rails-app
+    spec:
+      containers:
+      - name: rails-app
+        image: ittselali/my-rails-app:latest
+        env:
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: my-postgres-ha-postgresql-ha-postgresql
+              key: password
+        - name: DATABASE_PRIMARY_URL
+          value: "postgresql://postgres:$(POSTGRES_PASSWORD)@my-postgres-ha-postgresql-ha-postgresql-0.my-postgres-ha-postgresql-ha-postgresql-headless.default.svc.cluster.local:5432/postgres"
+        - name: DATABASE_REPLICA_URL
+          value: "postgresql://postgres:$(POSTGRES_PASSWORD)@my-postgres-ha-postgresql-ha-pgpool.default.svc.cluster.local:5432/postgres"
+        - name: REDIS_URL
+          value: "redis://redis-service:6379/0"
+        - name: RAILS_ENV
+          value: "development"
+        command: ["rails", "server", "-b", "0.0.0.0"]
+        ports:
+        - containerPort: 3000
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rails-app-service
+spec:
+  selector:
+    app: rails-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+  type: LoadBalancer

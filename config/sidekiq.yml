@@ -1,0 +1,15 @@
+:concurrency: 5
+
+:logging:
+  level: info
+
+:queues:
+  - default
+  - alert
+
+:scheduler:
+  :schedule:
+    check_inventory_status:
+      cron: "*/1 * * * *"  # Runs every 1 minute
+      class: "CheckInventoryStatus"
+      queue: alert

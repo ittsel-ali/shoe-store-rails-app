@@ -1,4 +1,6 @@
 class Inventory < ApplicationRecord
+  self.locking_column = :lock_version
+  
   validates :store, presence: true
   validates :model, presence: true
   validates :inventory, presence: true

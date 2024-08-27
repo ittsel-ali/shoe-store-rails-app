@@ -1,0 +1,19 @@
+postgresql:
+  replication:
+    enabled: true
+    user: postgres
+    password: postgres
+    slaveReplicas: 2
+
+pgpool:
+  replicaCount: 2
+  resources:
+    requests:
+      cpu: "250m"
+      memory: "256Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+
+service:
+  type: LoadBalancer
