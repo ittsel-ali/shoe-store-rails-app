@@ -1,3 +1,7 @@
+
+![Blank diagram (1)](https://github.com/user-attachments/assets/a1f60a8e-e67b-4651-a3f0-a768f49b438f)
+
+
 # InventoryApp
 
 InventoryApp is a Rails application that listens to a WebSocket service, processes incoming messages, saves them to the database, and broadcasts them to the client in real-time using Action Cable.
