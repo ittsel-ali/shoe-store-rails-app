@@ -1,5 +1,5 @@
 
-![Blank diagram (1)](https://github.com/user-attachments/assets/a1f60a8e-e67b-4651-a3f0-a768f49b438f)
+![Blank diagram (2)](https://github.com/user-attachments/assets/6be9ad8b-3abf-40b2-9da0-788011a8122d)
 
 
 # InventoryApp
