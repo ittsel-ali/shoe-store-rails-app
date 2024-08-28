@@ -25,6 +25,7 @@ These instructions will get you a copy of the project up and running on your loc
 - Kubectl
 - Helm
 - Kafka
+- Ngrok
 
 If you want to setup everything on Local then, you would also require following:
 - Redis
