@@ -19,7 +19,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-- Ruby ruby 3.3.0 (2023-12-25 revision 5124f9ac75) [arm64-darwin23]
+- Ruby ruby 3.2.5 (2023-12-25 revision 5124f9ac75) [arm64-darwin23]
 - Rails Rails 7.1.3.4
 - Docker
 - Kubectl
