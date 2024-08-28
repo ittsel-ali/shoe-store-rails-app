@@ -59,9 +59,10 @@ By default, Docker Desktop sets up kubectl to use the local Kubernetes cluster. 
    brew services start kafka
    
 5. **Run Shoe Store Service**
+
    Remember to run in seperate terminal tab. Follow the instructions here: https://github.com/ittsel-ali/shoe-store
    
-6. **Setup Ngrok (MAC)**
+7. **Setup Ngrok (MAC)**
 
    Run in seperate terminal tab! This is required to allow k8 to listen to the feed send by the shoe-store inventory.rb, otherwise k8 will cause conflicts with localhost
    ```bash
@@ -69,13 +70,13 @@ By default, Docker Desktop sets up kubectl to use the local Kubernetes cluster. 
 
    ngrok tcp 9092
 
-7. **Update websocket listener K8 values**
+8. **Update websocket listener K8 values**
 
    Replace `WEBSOCKET_URL` value with the ip provided by Ngrok. You can update using cmd below: 
    ```bash
    nano websocket-listener-deployment.yml
    
-8. **Deploy Application to K8**
+9. **Deploy Application to K8**
    Run cmds below from rails app folder!
    ```bash
    helm repo add bitnami https://charts.bitnami.com/bitnami
