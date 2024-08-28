@@ -58,9 +58,12 @@ By default, Docker Desktop sets up kubectl to use the local Kubernetes cluster. 
    brew services start zookeeper
    brew services start kafka
    
-5. **Setup Ngrok (MAC)**
+5. **Run Shoe Store Service**
+   Remember to run in seperate terminal tab. Follow the instructions here: https://github.com/ittsel-ali/shoe-store
+   
+6. **Setup Ngrok (MAC)**
 
-   Run in seperate terminal! This is required to allow k8 to listen to the feed send by the shoe-store inventory.rb, otherwise k8 will cause conflicts with localhost
+   Run in seperate terminal tab! This is required to allow k8 to listen to the feed send by the shoe-store inventory.rb, otherwise k8 will cause conflicts with localhost
    ```bash
    brew install ngrok
 
